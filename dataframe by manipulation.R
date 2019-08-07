@@ -1,4 +1,10 @@
 
+
+
+####################################################################################
+group_by()
+####################################################################################
+
 # grouped data frame to list
 WEEKdata = split(MINdata[,MINnames],MINdata$SEQN) %>% lapply(FUN = function(i){
   a = rowSums(i)
