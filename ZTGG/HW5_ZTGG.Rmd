@@ -1,0 +1,32 @@
+1.     Patents come into the hospital since 9:00 am in the morning. Assume all the patent will come one after another. And assume if one person arrives at time t, the next person will arrive at t + z time. Here z is from exponential distribution with 1/mean equal 0.25 hours. Now assume a doctor will see any patient who arrives at the hospital between 9:00 am to 4pm. And the doctor will leave until he finishes seeing all the patients. Assume the time needed to see each patient is from Uniform(1/12 hour, 1/3 hour). Please simulate and answer the following questions:
+a.     Q1: Please simulate the arrival times for these patients.
+b.     Q2: On average, how many patients does the doctor need to see.
+c.     Q3: On average, how many patients will need to wait.
+d.     Q4: On average, when will the hospital close?
+
+```{r}
+rm(list = ls())
+t = 9
+while(t[length(t)] < 16){
+  t = c(t,t[length(t)] + rexp(1,4))
+}
+# if(t[length(t)]> 16){t = t[-length(t)]}
+
+
+```
+
+2.     Please Simulate the value of pi.
+
+ 
+3.     Simulate two samples x, and y, both from normal(0, 1) distribution, and length(x) = 1000, and length(y) = 1000. Conduct a two sample t-test on x and y. Save the p-value from this two sample t-test. Repeat for 10000 times. Plot the distribution of the p-values.
+ 
+4.     What is the expected number of cards that need to be turned over in a regular 52-card deck in order to see the first ace? Similar but not exactly a geometric distribution. 1 + 48/5 = 10.6. five places to hold the remaining 48 cards. For the first place, the average is 48/5. Use simulation/numerical method to get the estimate.
+ 
+5. Two sport teams A and B, 7 games in total, whoever reaches 4 wins is the winner, if we assume Markov chain, P(A wins game k|A wins game k-1)=p11,  P(A wins game k|A lost game k-1)=p01, How do we use simulation to get P(game 7 is played)?
+
+Use the following naming convention. 
+
+# p11: A won game k given A won game k-1
+# p01: A won game k given A lost game k-1 
+# p0: A won the first game: 0.5
+
