@@ -1,0 +1,49 @@
+https://rpubs.com/Hank_Stevens/prp
+
+```{r}
+set.seed(1)
+x <- runif(100, 0, 100)
+set.seed(2)
+x1 <- x + rnorm(100, sd=10) 
+set.seed(3)
+x2 <- 1 * x + rnorm(100, sd=10) # x2 is postively correlated with x1, with noise
+cor.test(x1, x2)
+```
+
+```{r}
+p1 <- 1 # positive effect of x1
+p2 <- -1 # neg. effect of x2
+set.seed(1)
+y <- p1*x1 + p2*x2 + rnorm(100, sd=10) # independent effects of x1 and x2, plus noise)
+cor(cbind(x,x1,x2,y))
+```
+
+```{r}
+summary( mod0 <- lm(y ~ x1 +x2))
+```
+
+```{r}
+# y, given x2
+mod1 <- lm(y ~ x2 )
+resid.1 <- resid(mod1)
+
+# x1, given x2
+mod2 <- lm(x1 ~ x2)
+resid.2 <- resid(mod2)
+
+
+# y, given x1
+mod3 <- lm(y ~ x1 )
+resid.3 <- resid(mod3)
+
+# x2, given x1
+mod4 <- lm(x2 ~ x1)
+resid.4 <- resid(mod4)
+
+layout(matrix(1:4, nc=2, byrow=TRUE) )
+plot(x1, y, main='y ~ x1')
+plot(x2, y, main='y ~ x2')
+plot(resid.2, resid.1, main='y|x2 ~ x1|x2')
+plot(resid.4, resid.3, main='y|x1 ~ x2|x1')
+```
+
