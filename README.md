@@ -7,5 +7,7 @@
 
    Hide pagedtable-header-type in Notebook Output [ref](https://stackoverflow.com/questions/46163466/data-frame-printing-in-r-markdown-how-to-hide-column-type)
 
-2. 
+2. travis-ci deploy R packages
+
+3. 
 
