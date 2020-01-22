@@ -2,7 +2,7 @@
 #find ./* -size +100M | cat >> .gitignore
 
 # How to use: double-click OR run the following command
-# ./gitpull.sh "Customize your own commitment"
+# ./git.sh "Customize your own commitment"
 
 git pull
 git add .
