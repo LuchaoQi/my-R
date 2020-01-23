@@ -5,6 +5,7 @@
 group_by()
 ####################################################################################
 
+# lapply apply function over columns
 # grouped data frame to list
 WEEKdata = split(MINdata[,MINnames],MINdata$SEQN) %>% lapply(FUN = function(i){
   a = rowSums(i)

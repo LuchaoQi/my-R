@@ -15,3 +15,4 @@ travis-ci deploy R packages
 
 
 
+[Long versus wide formats, tidy data](https://bcaffo.github.com/MRIcloudTutorial/longVwide/longVwide.html)
