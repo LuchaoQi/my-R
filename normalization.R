@@ -5,12 +5,10 @@ ggplot(gather(data), aes(value)) +
   geom_histogram(bins = 10) + 
   facet_wrap(~key, scales = 'free_x')
 
-tmp = lapply(data, function(i){
-  scale(i)
-}) %>% do.call(what = 'cbind') %>% as.data.frame()
-colnames(tmp) = colnames(data)
+data = apply(data, MARGIN = 2, FUN = function(i){ scale(i) }) %>% as.data.frame()
+# or
+data = apply(data, MARGIN = 2, FUN = function(i){ log(i)+1 }) %>% as.data.frame()
 
-
-ggplot(gather(tmp), aes(value)) + 
+ggplot(gather(data), aes(value)) + 
   geom_histogram(bins = 10) + 
   facet_wrap(~key, scales = 'free_x')
