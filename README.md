@@ -1,5 +1,9 @@
 # my-R
-> Some helpful R scripts and tips
+for combinations and permutations, check out MRIdata project updates.Rmd
+
+
+
+
 
 **tips**
 
