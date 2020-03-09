@@ -1,3 +1,19 @@
+# convert list of vector to dataframe
+# > age_res
+# $data22data26
+# CerebralCortex_L CerebralNucli_L WhiteMatter_L CerebralCortex_R CerebralNucli_R
+# 1            5e-04          0.0565             0                0           0.006
+# WhiteMatter_R
+# 1             0
+# 
+# $data22data31
+# CerebralCortex_L CerebralNucli_L WhiteMatter_L CerebralCortex_R CerebralNucli_R
+# 1                0           0.465             0                0           0.072
+# WhiteMatter_R
+# 1             0
+do.call(rbind.data.frame, age_res)
+
+
 
 
 
