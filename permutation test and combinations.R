@@ -17,6 +17,7 @@ test = function(x,y){
 }
 
 # 在vec不同的组合中, 对每一个组合用permutation test来检测2:7的feature均值
+# get function
 for(j in 1:dim(vec)[1]){
   data1 = get(vec[j,1])
   data2 = get(vec[j,2])
