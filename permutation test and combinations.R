@@ -29,5 +29,6 @@ for(j in 1:dim(vec)[1]){
     p_value = mean(abs(re_diff)>=abs(tr_diff))
   }) %>% do.call(what='cbind') %>% as.data.frame()
   colnames(perm_res) = colnames(data)[2:7]
+  
   age_res[[paste0(vec[j,1],vec[j,2])]] = perm_res
 }
