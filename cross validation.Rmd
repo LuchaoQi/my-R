@@ -1,7 +1,8 @@
+
+
 https://stackoverflow.com/a/52519212
 
-
-
+```{r}
 library("caret")
 my_data <- iris
 
@@ -19,3 +20,10 @@ mean(ols_model$resample$RMSE)==ols_model$results$RMSE
 mean(ols_model$resample$Rsquared)==ols_model$results$Rsquared
 
 ols_model$finalModel
+```
+
+```{r}
+mean(ols_model$resample$Rsquared)
+ols_model$results$Rsquared
+```
+

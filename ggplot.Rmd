@@ -1,0 +1,75 @@
+# How to add legend to geom_smooth in ggplot in R
+
+```{r}
+# https://stackoverflow.com/questions/36276240/how-to-add-legend-to-geom-smooth-in-ggplot-in-r
+
+# NHANES
+
+rm(list = ls())
+library(caret)
+library(gridExtra)
+load(file = 'analyticData.rda')
+res_RMSE = c()
+res_Rsquared = c()
+if(F){
+  for(i in 1:50){
+    PCnames = paste('PC',1:i,sep = '')
+    train.control <- trainControl(method = "cv", number = 10)
+    dat = analyticData[,c('RIDAGEYR','Race','Gender','BMI',PCnames)]
+    model <- caret::train(BMI ~., data = dat, method = "lm",
+                          trControl = train.control)
+    res_RMSE = c(res_RMSE, model$results$RMSE)
+    res_Rsquared = c(res_Rsquared, model$results$Rsquared)
+    
+  }
+  save(res_RMSE,res_Rsquared, file = 'CV_50PCs.rda')
+}
+
+load(file = 'CV_50PCs.rda')
+g1 = ggplot(data.frame(res_RMSE)) + 
+  aes(x = 1:length(res_RMSE), y = res_RMSE) +
+  geom_line(aes(color = 'Original RMSE Loss')) +
+  geom_smooth(se = TRUE, method =  'auto', aes(color = 'Smoothed RMSE Loss')) +
+  labs(x = 'Number of Principal Components Used in Cross-Validation',y = 'Root Mean Square Error ') +
+  scale_colour_manual(name="Legend", values=c("blue", "red"))
+
+g2 = ggplot(data.frame(res_Rsquared)) + 
+  aes(x = 1:length(res_Rsquared), y = res_Rsquared) +
+  geom_line(aes(color = 'Original RMSE Loss'))+
+  geom_smooth(se = TRUE, method =  'auto', aes(color = 'Smoothed RMSE Loss')) + 
+  labs(x = 'Number of Principal Components Used in Cross-Validation',y = 'R-squared') +
+  scale_colour_manual(name="Legend", values=c("blue", "red"))
+
+which(res_RMSE==min(res_RMSE))
+which(res_Rsquared==max(res_Rsquared))
+grid.arrange(g1,g2)
+
+```
+
+
+
+# histogram over each feature
+
+```{r}
+ggplot(gather(data), aes(value)) + 
+  geom_histogram(bins = 10) + 
+  facet_wrap(~key, scales = 'free_x')
+```
+
+
+# layout
+
+```{r}
+temp = pca_model$rotation %>% data.frame()
+
+gs = lapply(1:8, function(i) {
+  ggplot(temp) + 
+    aes(x = 1:nrow(temp)/60,y = unlist(temp[,i])) + 
+    geom_line() +
+    labs(x = "Time of Day", y = paste0("Loadings on PC",i)) +
+    theme(axis.title.y = element_text(size = rel(0.9)))
+})
+library(gridExtra)
+do.call(grid.arrange,c(gs,nrow = 3))
+```
+

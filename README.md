@@ -25,7 +25,9 @@ Publishable table from summary(model)
 
 travis-ci deploy R packages
 
+https://johnmuschelli.com/smi_2019/#1
 
+https://www.youtube.com/playlist?list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM
 
 
 

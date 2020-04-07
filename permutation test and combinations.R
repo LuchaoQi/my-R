@@ -1,19 +1,83 @@
+#########################################################################
+# permutation test on cor efficient
+load(file = 'data.Rda')
 data22 = data %>% filter(Age == '22-25')
 data26 = data %>% filter(Age == '26-30')
 data31 = data %>% filter(Age == '31-35')
 data36 = data %>% filter(Age == '36+')
 
 library(gtools)
+vec = combinations(4,2,c('data22','data26','data31','data36'))
+age_res = list()
+
+
+test = function(data1,data2,i){
+  l1 = dim(data1)[1]
+  l2 = dim(data2)[1]
+  data = c(data1[i[1]],data1[i[2]],data2[i[1]],data2[i[2]]) %>% unlist
+  #shuffle
+  data = sample(data,replace = F)
+  cor(data[1:l1],data[(1+l1):(2*l1)], method = 'spearman')-
+    cor(data[(2*l1+1):(2*l1+l2)],data[(2*l1+l2+1):(2*l1+2*l2)], method = 'spearman')
+}
+
+
+roi = colnames(data)[2:7]
+vec2 = combinations(length(roi),2,roi)
+
+for(j in 1:dim(vec)[1]){
+  data1 = get(vec[j,1])
+  data2 = get(vec[j,2])
+  perm_res = lapply(1:dim(vec2)[1], function(i){
+    i = vec2[i,]
+    tr_diff = cor(data1[i[1]],data1[i[2]], method = 'spearman') - cor(data2[i[1]],data2[i[2]],  method = 'spearman')
+    tr_diff = tr_diff %>% as.numeric()
+    re_diff = replicate(1000, test(data1,data2,i))
+    # hist(re_diff)
+    p_value = mean(abs(tr_diff) >= abs(re_diff))
+  }) %>% do.call(what='cbind') %>% as.data.frame()
+  # paste0(i,collapse = ' ')
+  colnames(perm_res) = apply(vec2,MARGIN = 1, function(i) paste0(i,collapse = ' '))
+  age_res[[paste0(vec[j,1],vec[j,2])]] = perm_res
+}
+
+age_res = do.call(rbind.data.frame, age_res)
+age_res
+# age_res[c('data22data26','data26data31','data31data36'),]
+# cerebralcortex and whitematter change across age
+
+which(age_res <= 0.05, arr.ind = TRUE)
+
+# apply(which(age_res <= 0.05, arr.ind = TRUE), MARGIN = 1, FUN = function(i){
+#   c(rownames(age_res)[i[1]], colnames(age_res)[i[2]])
+# }) %>% view()
+
+
+
+
+#########################################################################
+# permutation test on mean
+
+load(file = 'data.Rda')
+data22 = data %>% filter(Age == '22-25')
+data26 = data %>% filter(Age == '26-30')
+data31 = data %>% filter(Age == '31-35')
+data36 = data %>% filter(Age == '36+')
+
+
+library(gtools)
 # choose 2 from 4
 vec = combinations(4,2,c('data22','data26','data31','data36'))
+
 age_res = list()
 
 # shuffle and get diff
 test = function(x,y){
   l1 = length(x)
   l2 = length(y)
-  data = sample(c(x,y),replace = T)
-  mean(data[1:l1]) - mean(data[l1:(l1+l2)])
+  # shuffle
+  data = sample(c(x,y),replace = F)
+  mean(data[1:l1]) - mean(data[(l1+1):(l1+l2)])
 }
 
 # 在vec不同的组合中, 对每一个组合用permutation test来检测2:7的feature均值
@@ -25,10 +89,13 @@ for(j in 1:dim(vec)[1]){
   # 比如这里面第二列到第七列是我想要检验的
   perm_res = lapply(2:7, function(i){
     tr_diff = mean(data1[i] %>% unlist ) - mean(data2[i] %>% unlist)
-    re_diff = replicate(2000, test(data1[i] %>% unlist, data2[i] %>% unlist))
-    p_value = mean(abs(re_diff)>=abs(tr_diff))
+    tr_diff = tr_diff %>% as.numeric()
+    re_diff = replicate(1000, test(data1[i] %>% unlist, data2[i] %>% unlist))
+    p_value = mean(abs(tr_diff) >= abs(re_diff))
   }) %>% do.call(what='cbind') %>% as.data.frame()
   colnames(perm_res) = colnames(data)[2:7]
   
   age_res[[paste0(vec[j,1],vec[j,2])]] = perm_res
 }
+
+age_res = do.call(rbind.data.frame, age_res)
