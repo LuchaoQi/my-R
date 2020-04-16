@@ -1,7 +1,8 @@
 # How to add legend to geom_smooth in ggplot in R
 
+https://stackoverflow.com/questions/36276240/how-to-add-legend-to-geom-smooth-in-ggplot-in-r
 ```{r}
-# https://stackoverflow.com/questions/36276240/how-to-add-legend-to-geom-smooth-in-ggplot-in-r
+
 
 # NHANES
 
@@ -48,8 +49,9 @@ grid.arrange(g1,g2)
 
 
 
-# histogram over each feature
+# How do I generate a histogram for each column of my table?
 
+https://stackoverflow.com/questions/35372365/how-do-i-generate-a-histogram-for-each-column-of-my-table/35373419
 ```{r}
 ggplot(gather(data), aes(value)) + 
   geom_histogram(bins = 10) + 
