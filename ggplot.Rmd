@@ -48,17 +48,6 @@ grid.arrange(g1,g2)
 ```
 
 
-
-# How do I generate a histogram for each column of my table?
-
-https://stackoverflow.com/questions/35372365/how-do-i-generate-a-histogram-for-each-column-of-my-table/35373419
-```{r}
-ggplot(gather(data), aes(value)) + 
-  geom_histogram(bins = 10) + 
-  facet_wrap(~key, scales = 'free_x')
-```
-
-
 # layout
 
 ```{r}
@@ -74,4 +63,15 @@ gs = lapply(1:8, function(i) {
 library(gridExtra)
 do.call(grid.arrange,c(gs,nrow = 3))
 ```
+
+
+# How do I generate a histogram for each column of my table?
+
+https://stackoverflow.com/questions/35372365/how-do-i-generate-a-histogram-for-each-column-of-my-table/35373419
+```{r}
+ggplot(gather(data), aes(value)) + 
+  geom_histogram(bins = 10) + 
+  facet_wrap(~key, scales = 'free_x')
+```
+
 
