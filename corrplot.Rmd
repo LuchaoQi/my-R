@@ -3,11 +3,8 @@
 ```{r}
 library(ggcorrplot)
 ggcorrplot(cor(y_cor), 
-             # hc.order = TRUE,
-             # type = "upper",
            lab = T,
            tl.cex = 15,
-           # p.mat = cor_pmat(y_cor),
            title = "Pearson’s Correlation Analysis between \n BMI, Covariates and Physical Activity") + 
   labs(caption = 'Note. RIDAGEYR - Age in years at screening.') + 
   theme(plot.title = element_text(size = 20),
