@@ -17,7 +17,7 @@ Publishable table from summary(model)
 >
 >sjPlot works perfectly with MS word and http://www.tablesgenerator.com/
 >
->You can directly copy paste the results
+>[You can directly copy paste the results](https://strengejacke.github.io/sjPlot/articles/table_css.html#copying-table-output-to-office-or-word-processors-1)
 
 
 

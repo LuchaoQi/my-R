@@ -1,0 +1,33 @@
+# R python-like append
+
+```{r}
+a = list()
+a1 = c(1,2)
+a2 = c(3,4)
+a = c(a,list(a1,a2))
+```
+
+
+```{r}
+# https://stackoverflow.com/a/12978667/11964524
+lappend <- function (lst, ...){
+lst <- c(lst, list(...))
+  return(lst)
+}
+
+> a <- list()
+> a
+list()
+
+> lappend(a,c(1,2,3))
+[[1]]
+[1] 1 2 3
+
+> lappend(a, c(4,5,6), c(7,8,9))
+[[1]]
+[1] 4 5 6
+
+[[2]]
+[1] 7 8 9
+```
+
