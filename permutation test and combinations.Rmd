@@ -36,7 +36,7 @@ for(j in 1:dim(vec)[1]){
     tr_diff = tr_diff %>% as.numeric()
     re_diff = replicate(1000, test(data1,data2,i))
     # hist(re_diff)
-    p_value = mean(abs(tr_diff) >= abs(re_diff))
+    p_value = mean(abs(tr_diff) <= abs(re_diff))
   }) %>% do.call(what='cbind') %>% as.data.frame()
   # paste0(i,collapse = ' ')
   colnames(perm_res) = apply(vec2,MARGIN = 1, function(i) paste0(i,collapse = ' '))
@@ -95,7 +95,7 @@ for(j in 1:dim(vec)[1]){
     tr_diff = mean(data1[i] %>% unlist ) - mean(data2[i] %>% unlist)
     tr_diff = tr_diff %>% as.numeric()
     re_diff = replicate(1000, test(data1[i] %>% unlist, data2[i] %>% unlist))
-    p_value = mean(abs(tr_diff) >= abs(re_diff))
+    p_value = mean(abs(tr_diff) <= abs(re_diff))
   }) %>% do.call(what='cbind') %>% as.data.frame()
   colnames(perm_res) = colnames(data)[2:7]
   

@@ -1,4 +1,9 @@
-# my-R
+[toc]
+
+
+
+### Permutation test
+
 for combinations and permutations, check out MRIdata project updates.Rmd
 
 
@@ -7,7 +12,7 @@ for combinations and permutations, check out MRIdata project updates.Rmd
 
 
 
-Publishable table from summary(model) 
+### Publishable table from summary(model) 
 
 >~~[pixiedust](https://cran.r-project.org/web/packages/pixiedust/vignettes/pixiedust.html)~~
 >
@@ -25,12 +30,21 @@ Publishable table from summary(model)
 
 
 
+### R packages
+
+
+
 travis-ci deploy R packages
 
 https://johnmuschelli.com/smi_2019/#1
 
 https://www.youtube.com/playlist?list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM
 
+Get your R package on CRAN in 10 steps
+
+https://jef.works/blog/2018/06/18/get-your-package-on-cran-in-10-steps/
+
+https://kbroman.org/pkg_primer/pages/cran.html
 
 
 
@@ -38,8 +52,7 @@ https://www.youtube.com/playlist?list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM
 
 
 
-
-
+### EDA
 
 [Long versus wide formats, tidy data](https://bcaffo.github.com/MRIcloudTutorial/longVwide/longVwide.html)
 
