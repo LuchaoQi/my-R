@@ -2,11 +2,12 @@
 
 ```{r}
 library(ggcorrplot)
-ggcorrplot(cor(y_cor), 
+ggcorrplot(cor(y_cor),
+           p.mat = cor_pmat(y_cor),
            lab = T,
            tl.cex = 15,
            title = "Pearson’s Correlation Analysis between \n BMI, Covariates and Physical Activity") + 
-  labs(caption = 'Note. RIDAGEYR - Age in years at screening.') + 
+  labs(caption = 'Note. RIDAGEEX - Age in years at examination.') + 
   theme(plot.title = element_text(size = 20),
         plot.caption = element_text(size = 15))
 ```
