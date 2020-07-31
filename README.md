@@ -30,17 +30,25 @@ for combinations and permutations, check out MRIdata project updates.Rmd
 
 
 
-### R packages
+### R package development 101
 
 
 
-travis-ci deploy R packages
+#### Build a website for your package
+
+https://github.com/r-lib/pkgdown
+
+
+
+#### Travis-ci
 
 https://johnmuschelli.com/smi_2019/#1
 
 https://www.youtube.com/playlist?list=PLk3B5c8iCV-T4LM0mwEyWIunIunLyEjqM
 
-Get your R package on CRAN in 10 steps
+
+
+#### Get your R package on CRAN in 10 steps
 
 https://jef.works/blog/2018/06/18/get-your-package-on-cran-in-10-steps/
 
