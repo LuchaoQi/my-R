@@ -22,6 +22,13 @@ library(randomForest)
 varImpPlot(fit,
            main = 'Variable Importance Measured by Random Forest')
 
+
+# choose important variables based on results of random forest
+tmp = importance(fit)
+tmp = tmp[order(tmp[,1],decreasing = TRUE), ] # sort based on %IncMSE
+diet_names = rownames(tmp)[1:10] # top 10 most important dietary variables
+
+
 ytest = y[-id,'BMI']
 ypred = fit %>% predict(y[-id,])
 

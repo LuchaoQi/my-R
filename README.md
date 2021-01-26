@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 ### Permutation test
 
 for combinations and permutations, check out MRIdata project updates.Rmd
@@ -31,6 +35,8 @@ for combinations and permutations, check out MRIdata project updates.Rmd
 
 
 ### R package development 101
+
+#### [Building R Packages](https://johnmuschelli.com/ENAR_2020.html)
 
 
 
@@ -65,3 +71,9 @@ https://kbroman.org/pkg_primer/pages/cran.html
 [Long versus wide formats, tidy data](https://bcaffo.github.com/MRIcloudTutorial/longVwide/longVwide.html)
 
 [Data transformation with `dplyr::`](https://github.com/courtiol/Rguides)
+
+
+
+### RStudio
+
+https://dailies.rstudio.com/
